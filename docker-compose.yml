@@ -1,0 +1,24 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+  
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysqldb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=nodedb
+
+volumes:
+  mysqldb:   

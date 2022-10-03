@@ -14,7 +14,7 @@ module.exports = {
       docente_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Pessoa', key: 'id' }
+        references: { model: 'Pessoas', key: 'id' }
       },
       nivel_id: {
         allowNull: false,

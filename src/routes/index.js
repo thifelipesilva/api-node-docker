@@ -1,10 +1,15 @@
 const express = require('express');
-const pessoas = require('../routes/PessoasRoutes');
+
+const pessoas = require('./PessoasRoutes');
+const niveis = require('./NiveisRoutes');
+const turmas = require('./TurmasRoutes');
 
 module.exports = app => {
     app.use(
         express.json(),
-        pessoas
+        pessoas,
+        niveis,
+        turmas
     );
 }
 

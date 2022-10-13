@@ -24,6 +24,13 @@ class PessoasService extends Service {
             await this.matriculas.atualizaVariosRegistros({ status: 'cancelado' }, { estudante_id: estudanteId }, { transaction: transacao })
         });
     }
+
+    async matriculaPorEstudante(where = {}) {
+        const matriculas = await db.Pessoas.findOne({ where: { ...where } });
+        const todasMatriculas = await matriculas.getAulasMatriculadas();
+        return todasMatriculas;
+        
+    }
 }
 
 module.exports = PessoasService;

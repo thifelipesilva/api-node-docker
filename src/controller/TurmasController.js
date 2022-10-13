@@ -1,4 +1,3 @@
-const database = require('../models');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -17,7 +16,7 @@ class TurmasController {
         data_final ? where.data_inicio[Op.lte] = data_final : null;
 
         try {
-            const turmas = await database.Turmas.findAll({ where });
+            const turmas = await turmasService.mostraTodosRegistros(where);
             return res.status(200).json(turmas);
         } catch (error) {
             return res.status(500).json(error.message);
@@ -64,7 +63,7 @@ class TurmasController {
         const { id } = req.params;
 
         try {
-            await turmasService.deletaRegistro(id);
+            await turmasService.deletaRegistro({ id });
             return res.status(200).json(`message: id ${id} deletado.`);
         } catch (error) {
             return res.status(500).json(error.message);

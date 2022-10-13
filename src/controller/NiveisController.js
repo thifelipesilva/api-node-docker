@@ -15,7 +15,7 @@ class NiveisController {
     static async mostraNivelPorId(req, res) {
         const { id } = req.params;
         try {
-            const nivel = await niveisService.mostraRegistroPorId(id);
+            const nivel = await niveisService.mostraRegistroPorId({ id });
             return res.status(200).json(nivel);
         } catch (error) {
             return res.status(500).json(error.message);
@@ -49,7 +49,7 @@ class NiveisController {
         const { id } = req.params;
 
         try {
-            await niveisService.deletaRegistro(id);
+            await niveisService.deletaRegistro({ id });
             return res.status(200).json(`message: id ${id} deletado.`);
         } catch (error) {
             return res.status(500).json(error.message);
